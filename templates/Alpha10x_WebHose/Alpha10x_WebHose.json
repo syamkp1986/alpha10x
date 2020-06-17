@@ -1,0 +1,376 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name"
+		},
+		"RestService_WebHose": {
+			"type": "string"
+		},
+		"DataLake_RowData": {
+			"type": "string"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/Alpha10x_WebHose')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "WebHose2DataLake",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "RestSource",
+								"httpRequestTimeout": "00:01:40",
+								"requestInterval": "00.00:00:00.010",
+								"requestMethod": "GET",
+								"paginationRules": {
+									"AbsoluteUrl": "$.paging.next"
+								}
+							},
+							"sink": {
+								"type": "JsonSink",
+								"storeSettings": {
+									"type": "AzureDataLakeStoreWriteSettings"
+								},
+								"formatSettings": {
+									"type": "JsonWriteSettings",
+									"quoteAllText": true
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"path": "$['posts'][0]['thread']['uuid']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['posts'][0]['thread']['url']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['posts'][0]['thread']['site_full']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['posts'][0]['thread']['site']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['posts'][0]['thread']['site_section']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['posts'][0]['thread']['site_categories'][0]"
+										}
+									},
+									{
+										"source": {
+											"path": "$['posts'][0]['thread']['section_title']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['posts'][0]['thread']['title']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['posts'][0]['thread']['title_full']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['posts'][0]['thread']['published']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['posts'][0]['thread']['replies_count']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['posts'][0]['thread']['participants_count']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['posts'][0]['thread']['site_type']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['posts'][0]['thread']['country']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['posts'][0]['thread']['spam_score']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['posts'][0]['thread']['main_image']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['posts'][0]['thread']['performance_score']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['posts'][0]['thread']['domain_rank']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['posts'][0]['thread']['social']['facebook']['likes']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['posts'][0]['thread']['social']['facebook']['comments']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['posts'][0]['thread']['social']['facebook']['shares']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['posts'][0]['thread']['social']['gplus']['shares']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['posts'][0]['thread']['social']['pinterest']['shares']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['posts'][0]['thread']['social']['linkedin']['shares']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['posts'][0]['thread']['social']['stumbledupon']['shares']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['posts'][0]['thread']['social']['vk']['shares']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['posts'][0]['uuid']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['posts'][0]['url']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['posts'][0]['ord_in_thread']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['posts'][0]['parent_url']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['posts'][0]['author']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['posts'][0]['published']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['posts'][0]['title']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['posts'][0]['text']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['posts'][0]['highlightText']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['posts'][0]['highlightTitle']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['posts'][0]['highlightThreadTitle']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['posts'][0]['language']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['posts'][0]['external_links'][0]"
+										}
+									},
+									{
+										"source": {
+											"path": "$['posts'][0]['external_images'][0]"
+										}
+									},
+									{
+										"source": {
+											"path": "$['posts'][0]['entities']['persons'][0]"
+										}
+									},
+									{
+										"source": {
+											"path": "$['posts'][0]['entities']['organizations'][0]"
+										}
+									},
+									{
+										"source": {
+											"path": "$['posts'][0]['entities']['locations'][0]"
+										}
+									},
+									{
+										"source": {
+											"path": "$['posts'][0]['rating']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['posts'][0]['crawled']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['posts'][0]['updated']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['totalResults']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['moreResultsAvailable']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['next']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['requestsLeft']"
+										}
+									},
+									{
+										"source": {
+											"path": "$['warnings']"
+										}
+									}
+								]
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "WebHoseUrl",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "rawdata",
+								"type": "DatasetReference"
+							}
+						]
+					}
+				],
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/WebHoseUrl')]",
+				"[concat(variables('factoryId'), '/datasets/rawdata')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/WebHoseUrl')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "[parameters('RestService_WebHose')]",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "RestResource",
+				"schema": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/rawdata')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "[parameters('DataLake_RowData')]",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureDataLakeStoreLocation"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
