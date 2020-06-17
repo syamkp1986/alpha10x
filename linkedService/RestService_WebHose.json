@@ -1,0 +1,13 @@
+{
+	"name": "RestService_WebHose",
+	"properties": {
+		"description": "Rest url from web hose",
+		"annotations": [],
+		"type": "RestService",
+		"typeProperties": {
+			"url": "https://webhose.io/filterWebContent?token=edac61ca-9929-4c3d-a742-b6031646335d&format=json&sort=crawled&q=%22stock%20market%22%20language%3Aenglish",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}

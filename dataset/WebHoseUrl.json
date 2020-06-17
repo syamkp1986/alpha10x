@@ -1,0 +1,12 @@
+{
+	"name": "WebHoseUrl",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "RestService_WebHose",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "RestResource",
+		"schema": []
+	}
+}

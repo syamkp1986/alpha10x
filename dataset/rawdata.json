@@ -1,0 +1,16 @@
+{
+	"name": "rawdata",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "DataLake_RowData",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureDataLakeStoreLocation"
+			}
+		}
+	}
+}

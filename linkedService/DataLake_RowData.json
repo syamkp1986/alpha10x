@@ -1,0 +1,13 @@
+{
+	"name": "DataLake_RowData",
+	"properties": {
+		"annotations": [],
+		"type": "AzureDataLakeStore",
+		"typeProperties": {
+			"dataLakeStoreUri": "https://alpha10xdatalake.azuredatalakestore.net/webhdfs/v1",
+			"tenant": "71f23922-54b4-4f92-b942-c344ffd57167",
+			"subscriptionId": "fd11a438-56a5-4579-b78e-40fea45ada08",
+			"resourceGroupName": "Alpha10X"
+		}
+	}
+}
