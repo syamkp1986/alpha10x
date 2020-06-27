@@ -27,7 +27,7 @@
 					"sink": {
 						"type": "JsonSink",
 						"storeSettings": {
-							"type": "AzureDataLakeStoreWriteSettings"
+							"type": "AzureBlobFSWriteSettings"
 						},
 						"formatSettings": {
 							"type": "JsonWriteSettings",
@@ -304,30 +304,10 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "rawdata",
+						"referenceName": "rowdata",
 						"type": "DatasetReference"
 					}
 				]
-			},
-			{
-				"name": "Azure Function1",
-				"type": "AzureFunctionActivity",
-				"dependsOn": [
-					{
-						"activity": "WebHose2DataLake",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": []
 			}
 		],
 		"annotations": []

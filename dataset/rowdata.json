@@ -1,0 +1,16 @@
+{
+	"name": "rowdata",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ConnectToStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation"
+			}
+		}
+	}
+}
