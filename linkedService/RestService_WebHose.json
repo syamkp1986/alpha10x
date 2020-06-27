@@ -5,7 +5,7 @@
 		"annotations": [],
 		"type": "RestService",
 		"typeProperties": {
-			"url": "https://webhose.io/filterWebContent?token=edac61ca-9929-4c3d-a742-b6031646335d&format=json&sort=crawled&q=%22stock%20market%22%20language%3Aenglish",
+			"url": "https://webhose.io/filterWebContent?token=22420fce-dadf-4408-a8b0-47726a285eea&format=json&sort=crawled&q=technology%20(site:Techcrunch.com%20OR%20site:Thenextweb.com%20OR%20site:Wired.com%20OR%20site:Tech2.org%20OR%20site:Mashable.com%20OR%20site:Theve%20rge.com%20OR%20site:Digitaltrends.com%20OR%20site:Techradar.com%20OR%20site:Venturebeat.com%20OR%20site:Sciencestage.com%20OR%20site:Sciencedaily.com)%28language%3Aenglish+OR+language%3Afrench%29",
 			"enableServerCertificateValidation": true,
 			"authenticationType": "Anonymous"
 		}
