@@ -14,7 +14,7 @@
 					"value": "@{formatDateTime(utcnow(),'yyyy')}/@{formatDateTime(utcnow(),'MM')}/@{formatDateTime(utcnow(),'dd')}",
 					"type": "Expression"
 				},
-				"fileSystem": "webhosedata"
+				"fileSystem": "cleaned"
 			}
 		},
 		"schema": {
