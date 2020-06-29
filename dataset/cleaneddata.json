@@ -1,0 +1,260 @@
+{
+	"name": "cleaneddata",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Cleaneddatastorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": {
+					"value": "@{formatDateTime(utcnow(), 'yyyyMMdd')}",
+					"type": "Expression"
+				},
+				"fileSystem": "webhosedata"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"posts": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"thread": {
+								"type": "object",
+								"properties": {
+									"uuid": {
+										"type": "string"
+									},
+									"url": {
+										"type": "string"
+									},
+									"site_full": {
+										"type": "string"
+									},
+									"site": {
+										"type": "string"
+									},
+									"site_section": {
+										"type": "string"
+									},
+									"site_categories": {
+										"type": "array",
+										"items": {
+											"type": "string"
+										}
+									},
+									"section_title": {
+										"type": "string"
+									},
+									"title": {
+										"type": "string"
+									},
+									"title_full": {
+										"type": "string"
+									},
+									"published": {
+										"type": "string"
+									},
+									"replies_count": {
+										"type": "integer"
+									},
+									"participants_count": {
+										"type": "integer"
+									},
+									"site_type": {
+										"type": "string"
+									},
+									"country": {
+										"type": "string"
+									},
+									"spam_score": {
+										"type": "number"
+									},
+									"main_image": {
+										"type": "string"
+									},
+									"performance_score": {
+										"type": "integer"
+									},
+									"domain_rank": {
+										"type": "integer"
+									},
+									"social": {
+										"type": "object",
+										"properties": {
+											"facebook": {
+												"type": "object",
+												"properties": {
+													"likes": {
+														"type": "integer"
+													},
+													"comments": {
+														"type": "integer"
+													},
+													"shares": {
+														"type": "integer"
+													}
+												}
+											},
+											"gplus": {
+												"type": "object",
+												"properties": {
+													"shares": {
+														"type": "integer"
+													}
+												}
+											},
+											"pinterest": {
+												"type": "object",
+												"properties": {
+													"shares": {
+														"type": "integer"
+													}
+												}
+											},
+											"linkedin": {
+												"type": "object",
+												"properties": {
+													"shares": {
+														"type": "integer"
+													}
+												}
+											},
+											"stumbledupon": {
+												"type": "object",
+												"properties": {
+													"shares": {
+														"type": "integer"
+													}
+												}
+											},
+											"vk": {
+												"type": "object",
+												"properties": {
+													"shares": {
+														"type": "integer"
+													}
+												}
+											}
+										}
+									}
+								}
+							},
+							"uuid": {
+								"type": "string"
+							},
+							"url": {
+								"type": "string"
+							},
+							"ord_in_thread": {
+								"type": "integer"
+							},
+							"parent_url": {
+								"type": "null"
+							},
+							"author": {
+								"type": "string"
+							},
+							"published": {
+								"type": "string"
+							},
+							"title": {
+								"type": "string"
+							},
+							"text": {
+								"type": "string"
+							},
+							"highlightText": {
+								"type": "string"
+							},
+							"highlightTitle": {
+								"type": "string"
+							},
+							"highlightThreadTitle": {
+								"type": "string"
+							},
+							"language": {
+								"type": "string"
+							},
+							"external_links": {
+								"type": "array",
+								"items": {
+									"type": "string"
+								}
+							},
+							"external_images": {
+								"type": "array"
+							},
+							"entities": {
+								"type": "object",
+								"properties": {
+									"persons": {
+										"type": "array"
+									},
+									"organizations": {
+										"type": "array",
+										"items": {
+											"type": "object",
+											"properties": {
+												"name": {
+													"type": "string"
+												},
+												"sentiment": {
+													"type": "string"
+												}
+											}
+										}
+									},
+									"locations": {
+										"type": "array",
+										"items": {
+											"type": "object",
+											"properties": {
+												"name": {
+													"type": "string"
+												},
+												"sentiment": {
+													"type": "string"
+												}
+											}
+										}
+									}
+								}
+							},
+							"rating": {
+								"type": "null"
+							},
+							"crawled": {
+								"type": "string"
+							},
+							"updated": {
+								"type": "string"
+							}
+						}
+					}
+				},
+				"totalResults": {
+					"type": "integer"
+				},
+				"moreResultsAvailable": {
+					"type": "integer"
+				},
+				"next": {
+					"type": "string"
+				},
+				"requestsLeft": {
+					"type": "integer"
+				},
+				"warnings": {
+					"type": "null"
+				}
+			}
+		}
+	}
+}
