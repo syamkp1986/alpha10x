@@ -1,0 +1,25 @@
+{
+	"name": "rawdata",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "rawdatastorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@{formatDateTime(utcnow(), 'yyyyMMdd')}",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@{formatDateTime(utcnow(),'yyyy')}/@{formatDateTime(utcnow(),'MM')}/@{formatDateTime(utcnow(),'dd')}",
+					"type": "Expression"
+				},
+				"fileSystem": "raw"
+			}
+		}
+	}
+}

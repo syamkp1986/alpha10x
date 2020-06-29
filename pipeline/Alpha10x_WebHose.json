@@ -24,6 +24,86 @@
 							"AbsoluteUrl": "$.paging.next"
 						}
 					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "WebHoseUrl",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "dfRowData",
+				"type": "ExecuteDataFlow",
+				"dependsOn": [
+					{
+						"activity": "WebHose2DataLake",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"compute": {
+						"coreCount": 8,
+						"computeType": "General"
+					}
+				}
+			},
+			{
+				"name": "Azure Function1",
+				"type": "AzureFunctionActivity",
+				"dependsOn": [
+					{
+						"activity": "dfRowData",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "POST"
+				}
+			},
+			{
+				"name": "rawdatamapping",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "RestSource",
+						"httpRequestTimeout": "00:01:40",
+						"requestInterval": "00.00:00:00.010",
+						"requestMethod": "GET",
+						"paginationRules": {
+							"AbsoluteUrl": "$.d.__next"
+						}
+					},
 					"sink": {
 						"type": "JsonSink",
 						"storeSettings": {
@@ -65,7 +145,7 @@
 							},
 							{
 								"source": {
-									"path": "$['posts'][0]['thread']['site_categories'][0]"
+									"path": "$['posts'][0]['thread']['site_categories']"
 								}
 							},
 							{
@@ -230,27 +310,37 @@
 							},
 							{
 								"source": {
-									"path": "$['posts'][0]['external_links'][0]"
+									"path": "$['posts'][0]['external_links']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['posts'][0]['external_images'][0]"
+									"path": "$['posts'][0]['external_images']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['posts'][0]['entities']['persons'][0]"
+									"path": "$['posts'][0]['entities']['persons'][0]['name']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['posts'][0]['entities']['organizations'][0]"
+									"path": "$['posts'][0]['entities']['persons'][0]['sentiment']"
 								}
 							},
 							{
 								"source": {
-									"path": "$['posts'][0]['entities']['locations'][0]"
+									"path": "$['posts'][0]['entities']['organizations'][0]['name']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['posts'][0]['entities']['organizations'][0]['sentiment']"
+								}
+							},
+							{
+								"source": {
+									"path": "$['posts'][0]['entities']['locations']"
 								}
 							},
 							{
@@ -292,6 +382,11 @@
 								"source": {
 									"path": "$['warnings']"
 								}
+							},
+							{
+								"source": {
+									"path": "$['Column_1']"
+								}
 							}
 						]
 					}
@@ -304,7 +399,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "rowdata",
+						"referenceName": "rawdata",
 						"type": "DatasetReference"
 					}
 				]
