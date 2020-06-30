@@ -10,11 +10,10 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": {
-					"value": "@{formatDateTime(utcnow(),'yyyy')}/@{formatDateTime(utcnow(),'MM')}/@{formatDateTime(utcnow(),'dd')}",
+				"fileSystem": {
+					"value": "cleaned/@{formatDateTime(utcnow(),'yyyy')}/@{formatDateTime(utcnow(),'MM')}/@{formatDateTime(utcnow(),'dd')}",
 					"type": "Expression"
-				},
-				"fileSystem": "cleaned"
+				}
 			}
 		},
 		"schema": {
