@@ -1,0 +1,17 @@
+{
+	"name": "splitteddata",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "splitteddatasource",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "splitted"
+			}
+		}
+	}
+}
